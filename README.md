@@ -48,7 +48,7 @@ The following libraries and packages are required for the project:
 - [networkx](https://pypi.org/project/networkx/) 
 - [sqlalchemy](https://pypi.org/project/SQLAlchemy/) 
 
-To install and set up the project, ensure that the aforementioned libraries and packages are installed. You can easily install them using pip, for example:
+To install and set up the project, ensure that the mentioned libraries and packages are installed. You can easily install them using pip, for example:
 ```
 pip install nltk gensim flask owlready2 numpy scikit-learn networkx sqlalchemy
 ```
