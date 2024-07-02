@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="https://www.semanticweb.org/ontologies/2024/tutorial.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="https://www.semanticweb.org/ontologies/2024/tutorial.owl">
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#CSModule"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Lecturer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#MathModule"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Module"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Person"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Student"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.co-ode.org/ontologies/ont.owl#studies"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="http://www.co-ode.org/ontologies/ont.owl#teaches"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#CSModule"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Module"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Lecturer"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Person"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#MathModule"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Module"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Student"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Person"/>
+    </SubClassOf>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://www.co-ode.org/ontologies/ont.owl#studies"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Student"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="http://www.co-ode.org/ontologies/ont.owl#teaches"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Lecturer"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://www.co-ode.org/ontologies/ont.owl#studies"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Module"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="http://www.co-ode.org/ontologies/ont.owl#teaches"/>
+        <Class IRI="http://www.co-ode.org/ontologies/ont.owl#Module"/>
+    </ObjectPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://www.co-ode.org/ontologies/ont.owl#CSModule</IRI>
+        <Literal>The CS (Computer Science) module class represents a specialized unit of study within an academic computer science curriculum, dedicated to the exploration of specific computing concepts, technologies, or applications. It encompasses a structured set of instructional materials, activities, and assessments tailored to enhance students&apos; comprehension and practical proficiency in computer science-related topics, fostering their ability to analyze, design, and implement solutions within the realm of computer science.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://www.co-ode.org/ontologies/ont.owl#Lecturer</IRI>
+        <Literal>The lecturer class represents individuals who are responsible for delivering academic or instructional content within an educational institution, typically possessing expertise in a specific subject area and playing a key role in teaching and knowledge dissemination.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://www.co-ode.org/ontologies/ont.owl#MathModule</IRI>
+        <Literal>The math module class represents a focused unit of study within an academic mathematics curriculum, designed to impart knowledge and skills in a specific area of mathematics. It encompasses a structured set of instructional materials, activities, and assessments aimed at advancing students&apos; understanding and proficiency in mathematical concepts and problem-solving techniques within a defined scope of mathematical study.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://www.co-ode.org/ontologies/ont.owl#Module</IRI>
+        <Literal>The module class represents a distinct unit of study within an academic curriculum, encapsulating a specific topic, subject area, or course of instruction. Modules are designed to deliver targeted learning outcomes and typically include a defined set of learning materials, activities, and assessments to facilitate student comprehension and skill development within a particular academic discipline.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://www.co-ode.org/ontologies/ont.owl#Person</IRI>
+        <Literal>The person class represents individuals as entities, encompassing a wide range of human attributes and characteristics. It serves as a foundational concept for modeling human identity, encompassing aspects such as personal information, relationships, and roles within various contexts.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://www.co-ode.org/ontologies/ont.owl#Student</IRI>
+        <Literal>The student class represents individuals enrolled in an educational institution who are pursuing academic instruction, acquiring knowledge, and working towards the completion of a specific program or course of study. Students are typically engaged in learning activities and academic assessments under the guidance of educators.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>http://www.semanticweb.org/barbiern/ontologies/2024/3/tutoriel.owl#Lecturer</IRI>
+        <Literal>je test</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+

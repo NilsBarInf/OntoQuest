@@ -1,0 +1,337 @@
+body {
+    height: 100%; /* Set height to 100% for the body and html elements */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+
+}
+#home {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #46336e;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+#home:hover {
+    background-color: white;
+    border: solid;
+    color: #46336e;
+}
+.progress-bar-section {
+    width: 40%;
+    text-align: center;
+    margin: 60px auto 20px;
+
+}
+
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background-color: #45336E;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+    position: relative;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    top: 0;
+}
+
+.progress-percentage {
+    margin-top: 5px;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+
+}
+
+.section {
+    display: flex;
+    align-items: center; /* Ensure all items have the same height */
+    justify-content: space-between;
+}
+
+.visualization {
+    width: 30%; /* Adjust the width as needed */
+    padding: 15px; /* Add padding to the visualization for a consistent spacing */
+    border: 4px solid white;
+    border-radius: 20px;
+    background-color: #2B0730;
+    color: white;
+    margin-right: 20px; /* Add margin at the right for spacing */
+    display: flex;
+    flex-direction: column;
+}
+
+.graph-container {
+    width: 100%; /* Set the width to 100% */
+
+    border-radius: 20px;
+    background-color: white;
+    color: white;
+    margin-bottom: 10px; /* Add margin at the bottom for spacing */
+    position: relative;
+    overflow: hidden; /* Prevent overflow of the graph visualization */
+    color: red;
+}
+
+/* Ensure the height of the graph container matches the visualization image */
+.graph-container svg {
+    width: 100%;
+    fill: black; /* Adjust the fill color for better visibility */
+}
+.graph-container text {
+    z-index: 1; /* Ensure the text elements appear in front of other elements */
+    pointer-events: none; /* Disable pointer events on the text label */
+}
+
+.graph-container text.label-background {
+    background-color: rgba(255, 255, 255, 0.7); /* Add a semi-transparent white background to the text labels for better visibility */
+    padding: 3px 5px; /* Add padding to the text labels for a visually pleasing appearance */
+}
+.zoom-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 10px; /* Adjust the gap between the buttons as needed */
+
+}
+
+.zoom-buttons button {
+    color: white;
+    background-color: #64203F; /* Button color */
+    border: none;
+    cursor: pointer;
+    border-radius: 50%; /* Adjust the border radius for circular buttons */
+    font-size: 30px; /* Adjust the font size as needed */
+    width: 40px; /* Adjust the width of the buttons as needed */
+    height: 40px; /* Adjust the height of the buttons as needed */
+    display: flex; /* Use flexbox to center the content horizontally and vertically */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+
+}
+
+
+.zoom-buttons button:hover {
+    background-color: white;
+    border: solid;
+    color: #64203F;
+}
+
+
+.question-content {
+    width: 50%; /* Adjust the width as needed */
+    padding: 15px;
+    border: 4px solid #2B0730;
+    border-radius: 20px;
+    background-color: #45336E;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
+.question-content h3 {
+    margin: 0 0 15px; /* Add spacing between the heading and the paragraph */
+    font-weight: bold;
+}
+
+.question-content p {
+    padding: 15px;
+    border: 4px solid #2B0730;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    font-size: 15px;
+}
+
+.information {
+    width: 30%; /* Adjust the width as needed */
+    padding: 15px 0px;
+    border: 4px solid white;
+    border-radius: 20px;
+    background-color: #2B0730;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px; /* Remove default margin */
+}
+
+
+.information h3 {
+    font-weight: bold;
+    text-align: center; /* Center the title */
+    margin-bottom: 10px; /* Add spacing below the title */
+}
+
+.information ul {
+    padding: 0 10px; /* Remove default padding */
+    text-align: left; /* Align list elements to the right */
+    list-style-type: none;
+}
+
+.information li {
+    margin: 10px 0; /* Remove default padding */
+
+}
+
+.information span{
+    font-weight: bold;
+}
+.response-options {
+    position: absolute; /* Set the position to fixed */
+    bottom: 50px; /* Adjust the distance from the bottom as per your design */
+    left: 50%; /* Position the buttons horizontally centered on the page */
+    transform: translateX(-50%); /* Center the buttons horizontally */
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    text-align: center;
+    width: 100%; /* Set the width to 100% to prevent button size change */
+    gap: 15px;
+}
+
+button {
+    color: white;
+    border: solid;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 25px;
+    width: 20%; /* Adjust the width of the buttons as needed */
+    display: block; /* Ensure the button behaves as a block-level element */
+    text-align: center; /* Center the text within the button */
+    padding: 5px
+}
+
+#agree-btn, #enter-btn {
+    background-color: #45336E;
+}
+#agree-btn:hover, #enter-btn:hover {
+    background-color: white;
+    border: solid;
+    color: #45336E;
+
+}
+#disagree-btn {
+    background-color: #2B0730;
+}
+#disagree-btn:hover {
+    background-color: white;
+    border: solid;
+    color: #2B0730;
+}
+#pass-btn, #maybe-btn {
+    background-color: #64203F;
+}
+#pass-btn:hover, #maybe-btn:hover {
+    background-color: white;
+    border: solid;
+    color: #64203F;
+}
+
+button[title]::after {
+  content: attr(title); /* Set the tooltip content to the value of the title attribute */
+  background-color: rgba(0, 0, 0, 0.7); /* Add a background color to the tooltip */
+  color: white; /* Set the text color for the tooltip */
+  padding: 5px 10px; /* Add padding to the tooltip */
+  border-radius: 5px; /* Round the corners of the tooltip box */
+  position: absolute; /* Position the tooltip absolutely */
+  bottom: -40px; /* Adjust the distance of the tooltip from the button */
+  left: 50%; /* Position the tooltip horizontally centered on the button */
+  transform: translateX(-50%); /* Center the tooltip horizontally */
+  z-index: 1; /* Ensure the tooltip appears above other elements */
+  white-space: nowrap; /* Prevent the tooltip from wrapping to a new line */
+  display: none; /* Hide the tooltip by default */
+  font-size: 15px;
+}
+
+/* Show the tooltip on hover */
+button:hover[title]::after {
+  display: block; /* Show the tooltip on hover */
+}
+
+.modal-dialog {
+  max-width: 600px; /* Adjust the maximum width as per your design */
+}
+
+.modal-content {
+  background-color: #f8f9fa; /* Set the background color of the modal content */
+  border: 2px solid white; /* Define the border style */
+  border-radius: 10px; /* Add a border radius for rounded corners */
+}
+
+/* Style the modal header */
+.modal-header {
+  background-color: #2B0730; /* Set the background color of the header */
+  color: #fff; /* Define the text color */
+  border-bottom: 2px solid white; /* Add a bottom border */
+  border-radius: 8px 8px 0 0; /* Adjust the border radius for the top corners */
+}
+
+.modal-title {
+  font-size: 24px; /* Define the font size of the title */
+}
+
+/* Style the modal body */
+.modal-body {
+  padding: 20px; /* Add padding for the content */
+}
+
+/* Style the modal footer */
+.modal-footer {
+  background-color: #2B0730; /* Set the background color of the footer */
+  border-top: 2px solid white; /* Add a top border */
+  border-radius: 0 0 8px 8px; /* Adjust the border radius for the bottom corners */
+}
+
+/* Style the buttons in the modal footer */
+.modal-footer button {
+  margin: 0 5px; /* Add spacing between buttons */
+  padding: 10px 20px; /* Adjust the padding for the buttons */
+  font-size: 16px; /* Define the font size of the buttons */
+  border-radius: 5px; /* Add a border radius for rounded buttons */
+}
+
+.modal-explanation {
+  margin-top: 0px; /* Adjust the margin as needed */
+  text-align: center; /* Align the explanation at the center */
+  color: #666; /* Set the color of the explanation */
+  font-size: 13px; /* Define the font size of the explanation */
+}
+
+span {
+    color: white;
+}
+
+.btn-skip,
+.btn-submit {
+    color: #fff; /* Set the text color to white for better contrast */
+    padding: 10px 20px; /* Increase the padding for a comfortable click area */
+    border: none; /* Remove the border for a cleaner look */
+    border-radius: 5px; /* Add a subtle border radius for rounded corners */
+    cursor: pointer; /* Use a pointer cursor to indicate interactivity */
+    transition: background-color 0.3s, color 0.3s; /* Add a smooth transition for color changes */
+}
+
+.btn-skip:hover,
+.btn-submit:hover {
+    filter: brightness(90%); /* Apply a slight brightness change on hover for visual feedback */
+}
+
+/* Updated specific button styles */
+.btn-skip {
+    background-color: #8c8c8c; /* Adjusted background color for the 'Skip' button */
+}
+
+.btn-submit {
+    background-color: #922b4a; /* Adjusted background color for the 'Submit' button */
+}

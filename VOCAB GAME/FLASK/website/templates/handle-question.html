@@ -1,0 +1,396 @@
+{% extends "base.html" %}
+
+{% block title %}Question {{question_number}}{% endblock %}
+
+{% block styles %}
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/handle-question.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Sidebar navigation -->
+<a class="nav-item nav-link" id="home" href="/">Home</a>
+
+<!-- Progress bar section -->
+<div class="progress-bar-section">
+    <div class="progress-bar">
+        <div class="progress-bar-fill" style="width: {{ rounded_percentage }}%;"></div>
+    </div>
+    <div class="progress-percentage">{{ rounded_percentage }}%</div>
+</div>
+
+<!-- Question and visualization section -->
+<div class="section">
+    <div class="visualization">
+        <div class="visualization-content">
+            <div id="graph-container" class="graph-container">
+                <!-- The interactive ontology graph visualization will be rendered here -->
+            </div>
+        </div>
+        <div class="zoom-buttons">
+            <button id="zoom-in-btn">&#43;</button>
+            <button id="zoom-reset-btn">&#x21bb;</button>
+            <button id="zoom-out-btn">&#8722;</button>
+        </div>
+    </div>
+    <div class="question-content">
+        <h3>{{ word }}</h3>
+        <p>{{ definition }}</p>
+    </div>
+    <div class="information">
+        <h3>Information</h3>
+        <ul>
+            <li>
+                <span>Alternative Names:</span> {{ alternative_names | join(", ") }}
+            </li>
+            <li>
+                <span>Abbreviations:</span> {{ abbreviations | join(", ") }}
+            </li>
+            <li>
+                <span>German Names:</span> {{ german_names | join(", ") }}
+            </li>
+            <li>
+                <span>Examples:</span> {{ examples | join(", ") }}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Response form -->
+<form method="POST" id="responseForm">
+    {% if definition == "No definition available" %}
+    <div class="response-options">
+        <button type="submit" name="validationResponse" value="pass" id="maybe-btn" title="You don’t know the term">Pass</button>
+        <button type="submit" name="enterDefinition" value="enter" id="enter-btn" title="Enter your own definition" class="next-button">Enter your own definition</button>
+    </div>
+    {% else %}
+        <div class="response-options">
+            <button type="submit" name="validationResponse" value="pass" id="pass-btn" title="You don’t know the term">Maybe</button>
+            <button type="submit" name="validationResponse" value="agree" id="agree-btn" title="You agree with the definition">True</button>
+            <button type="submit" name="validationResponse" value="disagree" id="disagree-btn" title="You don’t agree with the definition or not sure about the definition">False</button>
+        </div>
+    {% endif %}
+</form>
+
+<!-- Modal for providing additional information -->
+<div class="modal" id="additionalInfoModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Provide Additional Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-explanation">
+                    <p>You have the option to add additional information, or you can choose to skip this step.</p>
+                </div>
+                <form id="additionalInfoForm">
+                    <div class="form-group">
+                        <label for="alternativeName">Alternative Names:</label>
+                        <input type="text" class="form-control" id="alternativeName" name="alternativeName">
+                        <label for="abbreviation">Abbreviation:</label>
+                        <input type="text" class="form-control" id="abbreviation" name="abbreviation">
+                        <label for="germanName">German Name:</label>
+                        <input type="text" class="form-control" id="germanName" name="germanName">
+                        <label for="example">Example:</label>
+                        <input type="text" class="form-control" id="example" name="example">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-skip" onclick="closeAndNext()">Skip</button>
+                <button type="button" class="btn-submit" onclick="submitAdditionalInfo()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var responseForm = document.getElementById('responseForm');
+        var additionalInfoModal = new bootstrap.Modal(document.getElementById('additionalInfoModal'));
+        var clickedButton = null;
+
+        // Event listeners for response buttons
+        var agreeButton = document.getElementById('agree-btn');
+        var disagreeButton = document.getElementById('disagree-btn');
+        var passButton = document.getElementById('pass-btn');
+
+        var enterButton = document.getElementById('enter-btn');
+        var maybeButton = document.getElementById('maybe-btn');
+
+        if (agreeButton) {
+            agreeButton.addEventListener('click', function() {
+                console.log('Agree button clicked');
+                clickedButton = 'agree';
+                additionalInfoModal.show();
+                event.preventDefault(); // Prevent default form submission
+            });
+        }
+        if (disagreeButton) {
+            disagreeButton.addEventListener('click', function() {
+                console.log('Disagree button clicked');
+                clickedButton = 'disagree';
+                additionalInfoModal.show();
+                event.preventDefault();
+            });
+        }
+        if (passButton) {
+            document.getElementById('pass-btn').addEventListener('click', function() {
+                console.log('Pass button clicked');
+                clickedButton = 'pass';
+            });
+        }
+        if (enterButton) {
+            document.getElementById('enter-btn').addEventListener('click', function() {
+                console.log('Enter definition button clicked');
+                clickedButton = 'enter';
+                additionalInfoModal.show();
+                event.preventDefault();
+            });
+        }
+
+        if (maybeButton) {
+            document.getElementById('maybe-btn').addEventListener('click', function() {
+                console.log('Pass button clicked');
+                clickedButton = 'pass';
+            });
+        }
+
+        // Function to handle submission of additional information
+        window.submitAdditionalInfo = function() {
+            // Retrieve user input for additional information
+            var alternativeName = document.getElementById('alternativeName').value;
+            var abbreviation = document.getElementById('abbreviation').value;
+            var germanName = document.getElementById('germanName').value;
+            var example = document.getElementById('example').value;
+
+            // Add the user-input data as hidden input fields to the response form
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "alternativeName");
+            input.setAttribute("value", alternativeName);
+            responseForm.appendChild(input);
+
+            input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "abbreviation");
+            input.setAttribute("value", abbreviation);
+            responseForm.appendChild(input);
+
+            input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "germanName");
+            input.setAttribute("value", germanName);
+            responseForm.appendChild(input);
+
+            input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "example");
+            input.setAttribute("value", example);
+            responseForm.appendChild(input);
+
+            // Add the clicked button value
+            input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "validationResponse");
+            input.setAttribute("value", clickedButton);
+            responseForm.appendChild(input);
+
+            // Manually trigger the form submission after handling the additional information
+            responseForm.submit();
+            // Hide the additional information modal
+            additionalInfoModal.hide();
+        };
+
+        window.closeAndNext = function() {
+            // Add the clicked button value as a hidden input field to the response form
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "validationResponse");
+            input.setAttribute("value", clickedButton);
+            responseForm.appendChild(input);
+
+            // Manually trigger the form submission after handling the additional information
+            responseForm.submit();
+            // Hide the additional information modal
+            additionalInfoModal.hide();
+        };
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Retrieve the JSON data for the ontology graph from the Flask route
+        var graphData = {{ ontology_graph | safe }};
+
+        // Define the dimensions of the SVG container
+        var width = 300;
+        var height = 300;
+
+        // Create an SVG container for the graph visualization
+        var svg = d3.select("#graph-container")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+        // Define the zoom behavior with scale extent and event handling
+        var zoom = d3.zoom()
+                     .scaleExtent([0.5, 4])  // Set the minimum and maximum scale extent
+                     .on("zoom", zoomed);
+
+        svg.call(zoom);  // Apply the zoom behavior to the SVG element
+
+        // Initialize the zoom scale
+        var zoomScale = 1;
+
+        // Define the zoomed function to handle zoom event transformation
+        function zoomed(event) {
+            // Adjust the sensitivity of the zoom transformation
+            zoomScale *= 1 + (event.transform.k - zoomScale) / 16;  // Adjust the scale increment for smoother zooming
+            svg.attr("transform", event.transform);  // Apply the adjusted transformation
+        }
+
+        // Add event listeners to the zoom buttons for smooth zooming
+        d3.select(".zoom-buttons").select("#zoom-in-btn").on("click", function() {
+                    svg.transition().duration(500).call(zoom.scaleBy, 1.2);  // Smoothly increase the zoom scale on button click
+                });
+
+        d3.select(".zoom-buttons").select("#zoom-out-btn").on("click", function() {
+                    svg.transition().duration(500).call(zoom.scaleBy, 0.8);  // Smoothly decrease the zoom scale on button click
+                });
+
+        d3.select(".zoom-buttons").select("#zoom-reset-btn").on("click", function() {
+                    // Reset the zoom and graph position to their initial states
+                    svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+                });
+
+        // Use D3.js to render the graph elements (nodes and links) based on the retrieved graph data
+        var nodes = graphData.nodes;
+        var links = graphData.links;
+
+        // Define and configure the simulation for the force-directed graph layout
+        var simulation = d3.forceSimulation(graphData.nodes)
+                           .force("link", d3.forceLink(graphData.links).id(d => d.id).distance(130))
+                           .force("charge", d3.forceManyBody())
+                           .force("center", d3.forceCenter(width / 2, height / 2));
+
+        // Append markers, links, nodes, and labels to the SVG for graph visualization
+        svg.append("defs").selectAll("marker")
+            .data(["end"]) // Differentiate markers by name
+            .enter().append("marker")
+            .attr("id", function(d) { return d; })
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 25)
+            .attr("refY", 0)
+            .attr("markerWidth", 6)
+            .attr("markerHeight", 6)
+            .attr("orient", "auto")
+            .append("path")
+            .attr("d", "M0,-5L10,0L0,5");
+
+        var link = svg.append("g")
+            .selectAll("line")
+            .data(graphData.links)
+            .enter().append("line")
+            .attr("class", "link")
+            .style("stroke-width", function(d) {
+                return d.label === "is_a" ? 1 : 1; // Adjust the stroke width based on the property type
+            })
+            .style("stroke", function(d) {
+                return d.label === "is_a" ? "black" : "black"; // Adjust the stroke color based on the property type
+            })
+            .style("stroke-dasharray", function(d) {
+                return d.label === "is_a" ? "4, 4" : "1, 0";  // Use a dashed line for "is_a" property, solid line for others
+            })
+            .attr("marker-end", "url(#end)"); // Add arrowhead to the end of the line
+
+        var node = svg.append("g")
+            .selectAll("circle")
+            .data(graphData.nodes)
+            .enter().append("circle")
+            .attr("r", 10)
+            .style("fill", function(d) {
+                // Assign a different color to the node corresponding to "random_word"
+                return d.id === "{{ word }}" ? "orange" : "steelblue";
+                })
+            .call(d3.drag() // Enable drag behavior
+            .on("start", dragStarted)
+            .on("drag", dragged)
+            .on("end", dragEnded));
+
+        var nodeLabels = svg.append("g")
+            .selectAll("text")
+            .data(graphData.nodes)
+            .enter()
+            .append("text")
+            .text(d => d.id)
+            .style("text-anchor", "middle")
+            .style("font-size", "14px")
+            .attr("dy", -12)
+            .style("pointer-events", "none")
+            .style("fill", "black")
+            .style("background-color", "rgba(255, 255, 255, 0.7)");
+
+
+        var edgeLabels = svg.append("g")
+             .selectAll("text")
+             .data(graphData.links)
+             .enter()
+             .append("text")
+             .text(d => d.label)
+             .style("text-anchor", "middle")
+             .style("font-size", "13px")
+             .attr("dy", 12)
+             .style("pointer-events", "none")
+             .style("fill", "red")
+             .style("background-color", "black");
+
+
+
+        simulation.on("tick", () => {
+            link.attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node.attr("cx", d => d.x)
+                .attr("cy", d => d.y);
+
+            nodeLabels.attr("x", d => d.x)
+                      .attr("y", d => d.y - 10);
+
+            edgeLabels.attr("x", d => (d.source.x + d.target.x) / 2)
+                      .attr("y", d => (d.source.y + d.target.y) / 2);
+        });
+
+        // Define and configure drag behavior for the nodes
+        function dragStarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function getTextBox(selection) {
+        selection.each(function(d) { d.bbox = this.getBBox(); })
+        }
+
+        function dragEnded(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+    });
+</script>
+{% endblock %}
