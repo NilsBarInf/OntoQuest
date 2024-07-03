@@ -7,7 +7,7 @@
 ## Process
 The game's process begins with **domain or department selection**, followed by **ontology selection** and **question quantity**. Users engage in validating vocabulary *definitions*, presenting terms and their definitions, with options to **agree**, **disagree**, or express uncertainty. The completed definitions and *contribution scores* are summarized. The scoring system weighs agreement based on **previous agreements** and **community consensus**, while **disagreement** scoring accounts for *semantic differences*. The stability system utilizes *semantic similarity calculations*, dynamic stability thresholds based on **total reviews**, and **clustering** to consolidate definitions, ensuring coherence and consistency.
 
-# Files Structure
+## Files Structure
 
 - VOCAB GAME
     - .idea  *(IDE-specific directory for project settings and configurations)*
@@ -78,6 +78,47 @@ The project is currently in debug mode, but this can be deactivated by replacing
 ## Database Setup
 
 All the **table models** are created in the `models.py` file and stored in the `database.db` file. To **add a new table** to the database, create one in the `models.py` file, and it will be automatically created and added to the database when launching the game. To **add a new row**, delete the entire table from the database, add the row to the table in the `models.py` file, and launch the game to recreate the table with the added row. To **access the database**, use DB Browser for SQLite.
+
+# Introduction to Flask
+Flask is a web framework for Python, known for its simplicity and flexibility. It facilitates the creation of web applications and RESTful APIs. In OntoQuest, Flask is used to handle web requests, render HTML templates, and serve static assets such as CSS and JavaScript.
+
+## Route/Page
+To add a new route/page in Flask, you can define a new function with the `@views.route` decorator in the `views.py` file. This function will handle HTTP requests for a specific URL path and return the corresponding response.
+
+*Example: Adding a New Page and Linking it to HTML*
+```
+@views.route('/new-page', methods=['GET'])
+def new_page():
+    return render_template('new_page.html')
+```
+
+## HTML 
+In Flask, you can use the `render_template` (see previous example) function to render HTML templates. This function takes the name of the HTML template as an argument and renders the template with any necessary context data. In a Flask application, an HTML template is a file that contains the structure and content of a web page. It allows you to dynamically generate HTML by inserting data from your Python code into the template.
+
+*Example: HTML Template*
+```
+{% extends "base.html" %}
+<!-- This template extends a base template, allowing you to reuse common HTML structure and styling
+	across multiple pages.  -->
+
+{% block title %}New Page{% endblock %} <!-- Your Page Title Here -->
+
+{% block styles %}
+    <!-- Link to your custom CSS file or any other code for the style of your HTML page -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/your-styles.css') }}">
+{% endblock %}
+
+{% block content %}
+    <!-- Content specific to your page -->
+                <!-- Example of Python loop to generate range of values -->
+                {% for i in range(0, 11) %}
+                    <span>{{ i*5 }}</span>
+                {% endfor %}
+{% endblock %}
+```
+
+## Creation Guidelines
+When creating a new route/page, you need to create the corresponding HTML and CSS files. The HTML file should be placed in the `templates` directory, and the CSS file should be placed in the `static/css` directory. This ensures that Flask can locate and serve these files correctly.
 
 
 # Additional Information
