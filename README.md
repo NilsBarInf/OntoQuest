@@ -77,7 +77,7 @@ The project is currently in debug mode, but this can be deactivated by replacing
 
 ## Database Setup
 
-All the **table models** are created in the `models.py` file and stored in the `database.db` file. To **add a new table** to the database, create one in the `models.py` file, and it will be automatically created and added to the database when launching the game. To **add a new row**, delete the entire table from the database, add the row to the table in the `models.py` file, and launch the game to recreate the table with the added row. To **access the database**, use DB Browser for SQLite.
+All the **table models** are created in the `models.py` file and stored in the `database.db` file. To **add a new table** to the database, create one in the `models.py` file, and it will be automatically created and added to the database when launching the game. To **add a new row**, delete the entire table from the database, add the row to the table in the `models.py` file, and launch the game to recreate the table with the added row. To **access the database**, use [DB Browser for SQLite](https://sqlitebrowser.org/).
 
 # Introduction to Flask
 Flask is a web framework for Python, known for its simplicity and flexibility. It facilitates the creation of web applications and RESTful APIs. In OntoQuest, Flask is used to handle web requests, render HTML templates, and serve static assets such as CSS and JavaScript.
