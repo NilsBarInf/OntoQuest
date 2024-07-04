@@ -127,3 +127,6 @@ When creating a new route/page, you need to create the corresponding HTML and CS
 
 -   Incentives such as challenges and badges
 -   Improve the visualization of the ontology
+
+## Limits
+- Calculation time of the semantic similarity
