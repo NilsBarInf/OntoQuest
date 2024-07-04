@@ -130,3 +130,4 @@ When creating a new route/page, you need to create the corresponding HTML and CS
 
 ## Limits
 - Calculation time of the semantic similarity
+- Ontologies need to be rdf files, owl files are not supported
