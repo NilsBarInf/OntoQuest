@@ -154,6 +154,14 @@ To associate the ontology with the relevant departments, add the necessary rows 
 - department: The name of the department
 - ontology_id: The ID of the ontology you previously added to the ontology table
 
+## Updating Departments
+
+When adding or modifying an existing department, you need to update the `department_ontology_association` table accordingly. Additionally, you need to update the `department.html` file by adding or modifying the following code with the department's name that you entered in the DB as value:
+
+```
+<option value="name_of_department">Name of Department</option>
+```
+
 By following these steps, you can successfully add an ontology to the game and make it playable for the associated departments.
 
 # Additional Information
