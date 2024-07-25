@@ -143,8 +143,4 @@ By following these guidelines, you can ensure that your ontologies are properly 
 ## Next Steps or Things Not Currently Implemented
 
 -   Incentives such as challenges and badges
--   Improve the visualization of the ontology
 
-## Limits
-- Calculation time of the semantic similarity
-- Ontologies need to be rdf files, owl files are not supported
