@@ -18,7 +18,7 @@ The game's process begins with **domain or department selection**, followed by *
             - static  *(Contains static assets such as CSS, JSON, images, and ontologies)*
                 - css
                 - json
-                - ontologies  *(Stores the ontologies of the game)*
+                - ontologies  *(File to store the ontologies of the game as rdf file)*
                 - picture
             - templates  *(Stores the HTML templates for the website)*
             - __init__.py  *(Initialization script for the Flask application)*
@@ -120,6 +120,23 @@ In Flask, you can use the `render_template` (see previous example) function to r
 ## Creation Guidelines
 When creating a new route/page, you need to create the corresponding HTML and CSS files. The HTML file should be placed in the `templates` directory, and the CSS file should be placed in the `static/css` directory. This ensures that Flask can locate and serve these files correctly.
 
+# Ontologies Management
+
+## Ontologies File Structure
+When adding an ontology to the game, store the RDF file in the ontologies directory, which is a subdirectory of the static file. Currently, only RDF file types are supported.
+
+## Ontology Format Guidelines
+To ensure compatibility, follow these guidelines when creating or editing ontologies:
+
+- Each term should be represented as a class.
+- Define each term's definition as an annotation, specifically a comment, associated with the corresponding class.
+- The additional information provided by the users are stored with data properties that are the following one:
+	- hasAbbreviation
+	- hasAlternativeName
+	- hasExample
+	- hasGermanName
+
+By following these guidelines, you can ensure that your ontologies are properly formatted and can be successfully integrated into the game.
 
 # Additional Information
 
