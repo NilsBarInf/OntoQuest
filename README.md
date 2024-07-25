@@ -146,8 +146,8 @@ In addition to adding the ontology file, you need to register the ontology in th
 Add a new row to the `ontology` table with the following information:
 - name: The name of the ontology
 - description: A brief description of the ontology
-- image_url: The URL to the corresponding image of the ontology, in the format picture/name_of_image.jpg
-- ontology_url: The name of your ontology file, in the format name_of_ontology.rdf
+- image_url: The URL to the corresponding image of the ontology, in the format `picture/name_of_image.jpg`
+- ontology_url: The name of your ontology file, in the format `name_of_ontology.rdf`
 
 ### Department-Ontology Association
 To associate the ontology with the relevant departments, add the necessary rows to the `department_ontology_association` table with the following information:
