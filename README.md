@@ -41,16 +41,20 @@ The game's process begins with **domain or department selection**, followed by *
 The following libraries and packages are required for the project: 
 - [nltk](https://pypi.org/project/nltk/) 
 - [gensim](https://pypi.org/project/gensim/) 
-- [flask](https://pypi.org/project/Flask/) 
+- [flask](https://pypi.org/project/Flask/)
+- [flask login](https://pypi.org/project/Flask-Login/)
 - [owlready2](https://pypi.org/project/Owlready2/) 
 - [numpy](https://pypi.org/project/numpy/) 
 - [scikit-learn](https://pypi.org/project/scikit-learn/) 
 - [networkx](https://pypi.org/project/networkx/) 
-- [sqlalchemy](https://pypi.org/project/SQLAlchemy/) 
+- [flask sqlalchemy](https://pypi.org/project/Flask-SQLAlchemy/)
+- [rdflib](https://pypi.org/project/rdflib/4.0/)
+- [SQL Alchemy](https://pypi.org/project/SQLAlchemy/)
+- [Werkzeug](https://pypi.org/project/Werkzeug/)
 
-To install and set up the project, ensure that the mentioned libraries and packages are installed. You can easily install them using pip, for example:
+To install and set up the project, ensure that the mentioned libraries and packages are installed. You can easily install them using pip and the provided requirements.txt file:
 ```
-pip install nltk gensim flask owlready2 numpy scikit-learn networkx sqlalchemy
+pip install -r requirements.txt
 ```
 
 ## Installation
