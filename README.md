@@ -144,15 +144,15 @@ In addition to adding the ontology file, you need to register the ontology in th
 
 ### Ontology Table
 Add a new row to the `ontology` table with the following information:
-	- name: The name of the ontology
-	- description: A brief description of the ontology
-	- image_url: The URL to the corresponding image of the ontology, in the format picture/name_of_image.jpg
-	- ontology_url: The name of your ontology file, in the format name_of_ontology.rdf
+- name: The name of the ontology
+- description: A brief description of the ontology
+- image_url: The URL to the corresponding image of the ontology, in the format picture/name_of_image.jpg
+- ontology_url: The name of your ontology file, in the format name_of_ontology.rdf
 
 ### Department-Ontology Association
 To associate the ontology with the relevant departments, add the necessary rows to the `department_ontology_association` table with the following information:
-	- department: The name of the department
-	- ontology_id: The ID of the ontology you previously added to the ontology table
+- department: The name of the department
+- ontology_id: The ID of the ontology you previously added to the ontology table
 
 By following these steps, you can successfully add an ontology to the game and make it playable for the associated departments.
 
