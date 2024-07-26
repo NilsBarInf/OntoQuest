@@ -19,7 +19,7 @@ The game's process begins with **domain or department selection**, followed by *
                 - css
                 - json
                 - ontologies  *(File to store the ontologies of the game as rdf file)*
-                - picture
+                - picture *(File to store particularly the ontologies pciture)*
             - templates  *(Stores the HTML templates for the website)*
             - __init__.py  *(Initialization script for the Flask application)*
             - auth.py  *(Manages user authentication routes)*
