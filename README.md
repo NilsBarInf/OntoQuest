@@ -19,7 +19,7 @@ The game's process begins with **domain or department selection**, followed by *
                 - css
                 - json
                 - ontologies  *(File to store the ontologies of the game as rdf file)*
-                - picture *(File to store particularly the ontologies pciture)*
+                - picture *(File to store particularly the ontologies pictures)*
             - templates  *(Stores the HTML templates for the website)*
             - __init__.py  *(Initialization script for the Flask application)*
             - auth.py  *(Manages user authentication routes)*
@@ -127,7 +127,7 @@ When creating a new route/page, you need to create the corresponding HTML and CS
 # Ontologies Management
 
 ## Ontologies File Structure
-When adding an ontology to the game, store the RDF file in the ontologies directory, which is a subdirectory of the static file. Currently, only RDF file types are supported.
+When adding an ontology to the game, store the RDF file in the `ontologies` directory, which is a subdirectory of the `static` file. Currently, only RDF file types are supported.
 
 ## Ontology Format Guidelines
 To ensure compatibility, follow these guidelines when creating or editing ontologies:
@@ -139,6 +139,7 @@ To ensure compatibility, follow these guidelines when creating or editing ontolo
 	- hasAlternativeName
 	- hasExample
 	- hasGermanName
+   
 ## Database Configuration
 In addition to adding the ontology file, you need to register the ontology in the database. You can do this using a database browser or by running the necessary SQL commands.
 
