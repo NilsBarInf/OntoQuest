@@ -19,7 +19,7 @@ The game's process begins with **domain or department selection**, followed by *
                 - css
                 - json
                 - ontologies  *(File to store the ontologies of the game as rdf file)*
-                - picture *(File to store particularly the ontologies pictures)*
+                - picture *(File to store particularly the ontologies pictures in 600x338 size)*
             - templates  *(Stores the HTML templates for the website)*
             - __init__.py  *(Initialization script for the Flask application)*
             - auth.py  *(Manages user authentication routes)*
@@ -147,7 +147,7 @@ In addition to adding the ontology file, you need to register the ontology in th
 Add a new row to the `ontology` table with the following information:
 - name: The name of the ontology
 - description: A brief description of the ontology
-- image_url: The URL to the corresponding image of the ontology, in the format `picture/name_of_image.jpg` (or .png) and add the image in the picture directory
+- image_url: The URL to the corresponding image of the ontology, in the format `picture/ontologies_pictures/name_of_image.jpg` (or .png) and add the image in the `ontologies_pictures` directory (subdirectory of the `picture` file)
 - ontology_url: The name of your ontology file, in the format `name_of_ontology.rdf`
 
 ### Department-Ontology Association
