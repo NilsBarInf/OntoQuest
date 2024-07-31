@@ -167,7 +167,38 @@ By following these steps, you can successfully add an ontology to the game and m
 
 # Additional Information
 
-## Next Steps or Things Not Currently Implemented
+## Things Not Currently Implemented
 
 -   Incentives such as challenges and badges
 
+## Improvements that need to be conceptualized/implemented:
+### Determine user knowledge level:
+- Use a short quiz or a series of questions at the beginning to determine the user's knowledge level in a particular area of interest (for this we can use the definition of the DR)
+- Use the user's answers to determine their level of expertise, e.g., beginner, intermediate, advanced
+- Use this information to tailor the game experience to the user's level
+
+### "Area of interest" instead of "department":
+- Use "area of interest" as a more general term to encompass different domains and expertise areas
+- Allow users to select multiple areas of interest to reflect their diverse expertise and interests
+- Default areas of interest can be based on the DR lobes
+
+### Defining a "correct" answer:
+- Establish a set of criteria to determine what constitutes a "correct" answer for the definitions, e.g., accuracy, relevance, completeness
+
+### Creating an "expert" community:
+- Establish a threshold for becoming an "expert" in a particular area of interest, e.g., top 5% of users with at least 100 correct answers
+- Provide incentives for users to become experts, e.g., badges, special privileges, recognition on a leaderboard
+- Only allow experts to contribute additional information on the terms of the ontologies
+- Implement a system to remove users from the expert community if their performance falls below a certain threshold, e.g., 10%
+
+### Making recent answers more "important":
+- Use a weighted scoring system to give more importance to recent answers, e.g., more recent answers are worth more points
+
+### Adding a new game mode:
+- Create a new game mode that focuses on relationships between classes, e.g., "Class Relations"
+- Use a different set of questions and challenges that test users' understanding of relationships between classes
+- Allow users to earn points and badges in this new game mode
+
+### Optimizing semantic similarity score calculation:
+- Use a more efficient algorithm/library to calculate the semantic similarity score
+- When the user enter its own definition, instead of comparing its definition with all the existing definition to find the closest one, just compare to the top5 scored definitions and find the closest one among those
