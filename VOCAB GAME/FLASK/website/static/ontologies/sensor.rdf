@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/barbiern/ontologies/2024/5/sensor.rdf"
+         xmlns="http://www.semanticweb.org/barbiern/ontologies/2024/5/sensor.rdf#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/barbiern/ontologies/2024/5/sensor.rdf"/>
+
+<owl:ObjectProperty rdf:about="#communicatesWith">
+  <rdfs:domain rdf:resource="#Sensor"/>
+  <rdfs:range rdf:resource="#ControlSystem"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasLocation">
+  <rdfs:domain rdf:resource="#Sensor"/>
+  <rdfs:range rdf:resource="#Location"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasMeasurementMethod">
+  <rdfs:domain rdf:resource="#Sensor"/>
+  <rdfs:range rdf:resource="#MeasurementMethod"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#controlSystemName">
+  <rdfs:domain rdf:resource="#ControlSystem"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#locationID">
+  <rdfs:domain rdf:resource="#Location"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#sensorID">
+  <rdfs:domain rdf:resource="#Sensor"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="http://www.semanticweb.org/barbiern/ontologies/2024/5/supplychain.rdf#hasExample"/>
+
+<owl:DatatypeProperty rdf:about="http://www.semanticweb.org/barbiern/ontologies/2024/5/supplychain.rdf#hasGermanName"/>
+
+<owl:Class rdf:about="#Sensor">
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A sensor is a device that detects and responds to some type of input from the physical environment. It measures physical properties and converts them into signals that can be interpreted or displayed.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A sensor is a transducer that converts physical phenomena into electrical signals. Within the semiconductor industry, sensors play a critical role in measuring and monitoring environmental conditions, process parameters, and equipment performance.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In the context of the semiconductor industry, a sensor is an electronic component that detects and responds to physical input, producing an output that conveys information about the input. Sensors are essential for monitoring and controlling various processes in semiconductor manufacturing.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ControlSystem">
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A control system in the semiconductor industry encompasses a network of electronic and mechanical devices, software applications, and automation technologies designed to monitor, regulate, and optimize manufacturing processes. It provides real-time control and feedback mechanisms for semiconductor manufacturing operations, ensuring precision, reliability, and operational efficiency.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Location">
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="http://www.semanticweb.org/barbiern/ontologies/2024/5/supplychain.rdf#hasExample"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Munchen</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A location within the semiconductor industry refers to a specific physical position or area within a manufacturing facility, such as cleanrooms, production floors, or storage areas. It serves as a reference point for the placement of equipment, sensors, and manufacturing processes, contributing to operational organization and spatial management within the facility.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In the context of semiconductor manufacturing, a location represents a designated area within a facility where specific manufacturing processes, equipment, or materials are situated. It provides spatial reference points for operational and logistical management within the semiconductor production environment.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In a supply chain context, a Location refers to a specific physical or virtual point where inventory, goods, or products are stored, handled, or processed. It can be a facility, a warehouse, a distribution center, a retail store, a manufacturing plant, or even a transportation hub.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MeasurementMethod">
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A measurement method in the semiconductor industry represents a specific technique, technology, or procedure used to measure physical parameters such as temperature, pressure, or flow within semiconductor manufacturing processes. It encompasses diverse methodologies, instruments, and sensor technologies utilized to obtain accurate and reliable measurement data critical for process control and quality assurance.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Within semiconductor manufacturing, a measurement method denotes a standardized approach or technology utilized to measure and monitor physical properties such as temperature, pressure, or chemical composition. It encompasses diverse measurement techniques, including thermocouples, strain gauges, and ultrasonic measurement methods, each tailored to specific measurement requirements within semiconductor manufacturing processes.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#InfraredTemperatureSensor">
+  <rdfs:subClassOf rdf:resource="#TemperatureSensor"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An infrared temperature sensor is a device that measures temperature by detecting the infrared energy emitted by an object. It converts the energy into an electrical signal for temperature measurement and monitoring.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In semiconductor applications, an infrared temperature sensor is an electronic device designed to measure temperature variations using infrared technology. It provides non-contact temperature measurement capabilities critical for process control and equipment monitoring in semiconductor manufacturing.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#TemperatureSensor">
+  <rdfs:subClassOf rdf:resource="#Sensor"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A temperature sensor is a device that measures temperature or temperature gradients and converts the information for processing or display.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A temperature sensor is a transducer that generates an electrical signal proportional to the temperature it measures. Within the semiconductor industry, precise temperature sensors are crucial for ensuring optimal operating conditions and process control.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In semiconductor applications, a temperature sensor is an electronic device designed to measure and monitor temperature variations within semiconductor manufacturing processes. It provides critical data for maintaining operational efficiency and product quality.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ProximitySensor">
+  <rdfs:subClassOf rdf:resource="#Sensor"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A proximity sensor is a device that detects the presence or absence of an object within a certain range and emits a signal based on the object's proximity.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A proximity sensor is a transducer that emits a signal based on the presence or absence of objects within its range. In the semiconductor industry, proximity sensors enhance operational efficiency and safety by providing real-time object detection capabilities.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In semiconductor manufacturing, a proximity sensor is an electronic component that detects the presence or absence of objects in proximity to specific equipment or production processes. It contributes to process control and automation in semiconductor manufacturing operations.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ThermocoupleTemperatureSensor">
+  <rdfs:subClassOf rdf:resource="#TemperatureSensor"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A thermocouple temperature sensor is a device that measures temperature by utilizing the thermoelectric effect. It generates a voltage proportional to the temperature difference between two junctions, allowing for accurate temperature measurement and monitoring.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A thermocouple temperature sensor is a transducer that relies on the thermoelectric effect to measure temperature differentials. Within the semiconductor industry, thermocouple temperature sensors are essential for precise and reliable temperature measurement in diverse manufacturing environments.</rdfs:comment>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In semiconductor manufacturing, a thermocouple temperature sensor is an electronic device that utilizes the thermoelectric effect to measure temperature differentials in critical processes. It provides reliable and accurate temperature data for controlling and optimizing semiconductor manufacturing operations.</rdfs:comment>
+</owl:Class>
+
+
+</rdf:RDF>
